@@ -14,7 +14,7 @@ def inserir_cliente():
     data = request.json
     novo_usuario = {
         "id": len(CLIENTES) + 1,
-        "nome": data['name'],
+        "nome": data['nome'],
         "email": data['email']
     }
 
@@ -45,4 +45,6 @@ def atualizar_cliente(cliente_id):
 #Formulario para deletar  um cliente
 @cliente_route.route('/<int:cliente_id>/delete',methods=['DELETE'])
 def deletar_cliente(cliente_id):
-    pass
+    global CLIENTES
+    CLIENTES = [ c for c in CLIENTES if c['id'] != cliente_id]
+    return {'deleted': 'ok'}

@@ -1,13 +1,9 @@
 from flask import Flask
-from routes.home import home_route
-from routes.cliente import cliente_route
+from configuration import confgure_all
 
 #Inicialização
 app = Flask(__name__)
 
-app.register_blueprint(home_route)
-app.register_blueprint(cliente_route, url_prefix='/clientes')
-
-
+confgure_all(app)
 #Recarrega o servidor o web a cada atualização
 app.run(debug=True)
